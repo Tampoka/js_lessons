@@ -76,7 +76,7 @@ const CurrencyEContainer: React.FC<TProps> = props => {
     );
 };
 
-const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencyState => {
+const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencyState => {  //destructuring types
     return {
         currencies: currency.currencies,
         currentCurrency: currency.currentCurrency,
@@ -104,7 +104,7 @@ const mapDispatchToProps = (dispatch: Dispatch<CurrencyReducersTypes>) : any => 
 // @ts-ignore
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type TProps = ConnectedProps<typeof connector>;
+type TProps = ConnectedProps<typeof connector>; //dynamic typization with ConnectedProps from react-redux
 
 export default connector(CurrencyEContainer);
 
