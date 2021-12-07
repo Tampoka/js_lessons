@@ -101,10 +101,15 @@ const mapDispatchToProps = (dispatch: Dispatch<CurrencyReducersTypes>) : any => 
     };
 };
 
-// @ts-ignore
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-type TProps = ConnectedProps<typeof connector>; //dynamic typization with ConnectedProps from react-redux
+type TProps = ConnectedProps<typeof connector>; //dynamic typziation with ConnectedProps from react-redux
 
 export default connector(CurrencyEContainer);
+
+// const connector = connect(mapStateToProps, {});
+//
+// type TProps = ConnectedProps<typeof connector>; //dynamic typiation with ConnectedProps from react-redux
+//
+// export default connector(CurrencyEContainer);
 
