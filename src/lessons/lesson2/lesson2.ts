@@ -262,7 +262,7 @@ function makeCounter(n:number){
 
 }
 const counter = makeCounter(1);
-console.log(counter.reset())
+console.log(counter.set(4))
 
 
 
