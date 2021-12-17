@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import API from './API';
 import './lesson_3';
 
@@ -10,6 +10,16 @@ const Lesson3 = () => {
 
     const searchFilm = () => {
         API.searchFilmsByTitle(searchName)
+            .then(({data}) => {
+                const {Response, Error, Search} = data
+                Response === 'True' ? setSearchResult(JSON.stringify(Search)) : setSearchResult(Error)
+            })
+        //     .catch((err)=>{
+        //     console.log(err)
+        //         if(err){
+        //             alert('Troubles with key...')
+        //         }
+        // })
     };
 
     const searchByType = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -31,7 +41,8 @@ const Lesson3 = () => {
 
             <div>
                 <h3><p>Search by type:</p></h3>
-                <input type="text" value={searchNameByType} onChange={(e) => setSearchNameByType(e.currentTarget.value)}/>
+                <input type="text" value={searchNameByType}
+                       onChange={(e) => setSearchNameByType(e.currentTarget.value)}/>
                 <button onClick={searchByType} data-t='movie'>Movie</button>
                 <button onClick={searchByType} data-t='series'>Series</button>
                 <div>
