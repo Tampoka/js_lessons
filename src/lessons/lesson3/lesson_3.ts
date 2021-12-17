@@ -321,5 +321,54 @@ export default () => {
 //     console.log('Promise')})
 // console.log('end')
 
-let prom=new Promise(res=>res(10))
-let prom2=Promise.resolve(10)
+
+// let prom=new Promise(res=>res(10))
+// let prom2=Promise.resolve(10)
+//**********************************************************************//
+
+// console.log('start')
+// async function f(){
+//     console.log('Start function')
+//     let a=await new Promise((res,rej)=>{
+//         setTimeout(()=>res(50),1000)
+//     })
+//     console.log('End function')
+//     return a
+// }
+// let result=f()
+// console.log(result)
+// result.then(console.log)
+// console.log('End')
+
+// async function f(){
+//     console.log('Start function')
+//     let a=await Promise.resolve(10)
+//     let b=await Promise.resolve(50)
+//     let c=await Promise.resolve(100)
+//     console.log('End function')
+//     return a
+// }
+
+// let count=0
+// let resultA=null
+//
+// async function f(){
+//     try {
+//         console.log('Start function')
+//         if(resultA===0) {
+//             let a = await Promise.resolve(10)
+//             resultA=a
+//         }
+//         let b = await Promise.resolve(50)
+//         let c = await Promise.resolve(100)
+//         console.log('End function')
+//         return a
+//     } catch (e) {
+//         // if (err === 'error' && count < 5) {
+//         //     count++
+//         //     f(fghfhhf)
+// }
+//     }
+// }
+
+
