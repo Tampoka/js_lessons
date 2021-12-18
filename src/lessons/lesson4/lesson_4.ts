@@ -41,6 +41,45 @@ console.log('lesson 4');
 // свойства resolve и reject получают ссылки на соответствующие функции
 // resolve и reject. Следующие два обработчика запускают методы resolve и reject.
 
+type testObjType = {
+    promise: null | Promise<any>
+    resolve: null | Function
+    reject: null | Function
+    onSuccess: (paramName: string) => void
+    onError: (paramName: string) => void
+}
+const handlePromise: testObjType = {
+    promise: null,
+    resolve: null,
+    reject: null,
+    onSuccess: (paramName: string) => {
+        console.log(`Promise is resolved with data: ${paramName}`)
+    },
+    onError: (paramName: string) => {
+        console.log(`Promise is rejected with error: ${paramName}`)
+    }
+}
+
+export const createPromise=()=>{
+    handlePromise.promise=new Promise((res,rej)=>{
+        handlePromise.resolve=res
+        handlePromise.reject=rej
+    })
+    handlePromise.promise
+        .then(res=>handlePromise.onSuccess(res))  // then(handlePromise.onSuccess)
+        .catch(rej=>handlePromise.onError(rej))   // then(handlePromise.onError)
+}
+
+export const resolvePromise=()=>{
+    handlePromise.resolve&&handlePromise.resolve('resolve 1')
+}
+
+export const rejectPromise=()=>{
+    handlePromise.reject&&handlePromise.reject('reject 0')
+}
+
+// @ts-ignore
+window.testProm=handlePromise
 
 // Task 06
 // Создайте промис, который через 1 с возвращает строку "My name is".
@@ -57,6 +96,74 @@ console.log('lesson 4');
 // и выведите в консоль {name, age, city}
 
 
+//*********************************************************************************************************************//
+
+// 1.
+// setTimeout(()=>console.log(1),0)
+// console.log(2);
+// (()=>console.log(3))();
+// Promise.resolve(console.log(4));       // 2 3 4 1
+
+// 2.
+// new Promise ((res,rej)=>{
+//    console.log(1)
+// })
+// new Promise ((res,rej)=>{
+//     setTimeout(()=>console.log(2),0)
+// })
+// Promise.resolve(setTimeout(()=>console.log(3),0))
+// console.log(4)
+// Promise.reject(console.log(5))         // 1 4 5 2 3
+
+// 2.
+// (function () {
+//     setTimeout(() => console.log(1), 100)
+// })()
+// console.log(2)
+// let i = 0
+// while (i < 50000000) {
+//     i++
+// }
+// new Promise((res, rej) => {
+//     setTimeout(() => console.log(3), 50)
+// })
+//
+// function f() {
+//     console.log(4)
+// }
+//
+// Promise.resolve(console.log(5))          //2 5 1 3
+
+
+// 3.
+// let pr1 = new Promise((res) => {
+//     res(10)
+// })
+// let pr2 = new Promise((res) => {
+//     res(0)
+// })
+// pr1
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 2
+//     })
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 2
+//     })
+//     .then(console.log)
+// pr2
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 1
+//     })
+//     .then((res: any) => {
+//         console.log(res)
+//         return res + 1
+//     })
+//     .then(console.log)        //10 0 12 1 14 2
+
 
 // just a plug
-export default ()=>{};
+export default () => {
+};
