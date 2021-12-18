@@ -60,26 +60,26 @@ const handlePromise: testObjType = {
     }
 }
 
-export const createPromise=()=>{
-    handlePromise.promise=new Promise((res,rej)=>{
-        handlePromise.resolve=res
-        handlePromise.reject=rej
+export const createPromise = () => {
+    handlePromise.promise = new Promise((res, rej) => {
+        handlePromise.resolve = res
+        handlePromise.reject = rej
     })
     handlePromise.promise
-        .then(res=>handlePromise.onSuccess(res))  // then(handlePromise.onSuccess)
-        .catch(rej=>handlePromise.onError(rej))   // then(handlePromise.onError)
+        .then(res => handlePromise.onSuccess(res))  // then(handlePromise.onSuccess)
+        .catch(rej => handlePromise.onError(rej))   // then(handlePromise.onError)
 }
 
-export const resolvePromise=()=>{
-    handlePromise.resolve&&handlePromise.resolve('resolve 1')
+export const resolvePromise = () => {
+    handlePromise.resolve && handlePromise.resolve('resolve 1')
 }
 
-export const rejectPromise=()=>{
-    handlePromise.reject&&handlePromise.reject('reject 0')
+export const rejectPromise = () => {
+    handlePromise.reject && handlePromise.reject('reject 0')
 }
 
 // @ts-ignore
-window.testProm=handlePromise
+window.testProm = handlePromise
 
 // Task 06
 // Создайте промис, который через 1 с возвращает строку "My name is".
@@ -115,7 +115,9 @@ window.testProm=handlePromise
 // console.log(4)
 // Promise.reject(console.log(5))         // 1 4 5 2 3
 
+//**********************************************************************************************************************//
 // 2.
+
 // (function () {
 //     setTimeout(() => console.log(1), 100)
 // })()
@@ -134,8 +136,9 @@ window.testProm=handlePromise
 //
 // Promise.resolve(console.log(5))          //2 5 1 3
 
-
+//*******************************************************************************************************************//
 // 3.
+
 // let pr1 = new Promise((res) => {
 //     res(10)
 // })
@@ -162,6 +165,46 @@ window.testProm=handlePromise
 //         return res + 1
 //     })
 //     .then(console.log)        //10 0 12 1 14 2
+
+//*******************************************************************************************************************//
+//4.
+
+// async function sleep(ms:number){
+//     setTimeout(()=>{
+//         console.log(ms)
+//     },ms*100)
+// }
+
+// async function sleep(ms:number){
+//     setTimeout(()=>{
+//         console.log(ms)
+//     },100)                              // 3 2 1  without Promisification
+// }
+
+// async function sleep(ms: number) {
+//     return new Promise((res, rej) => {
+//         //res
+//         setTimeout(() => {
+//             //res
+//             res(console.log(ms))
+//         }, ms * 100)
+//     })
+// }
+
+// async function sleep(ms:number){
+//    return Promise.resolve(
+//        setTimeout(() => {
+//            console.log(ms)
+//        }, 100))
+//    }
+
+// async function show() {
+//     await sleep(3)
+//     await sleep(2)
+//     await sleep(1)                 // 1 2 3    to     3 2 1
+// }
+//
+// show();
 
 
 // just a plug
